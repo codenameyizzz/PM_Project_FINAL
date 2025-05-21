@@ -1,0 +1,1154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Prediksi Transfer Pemain</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Enhanced Modern and Elegant Styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Outfit', sans-serif;
+        }
+        
+        :root {
+            --primary: #3b82f6;
+            --primary-dark: #1d4ed8;
+            --secondary: #10b981;
+            --accent: #f43f5e;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --gray-light: #e2e8f0;
+        }
+        
+        body {
+            background: linear-gradient(135deg, var(--dark), #1e293b);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding: 0;
+            position: relative;
+            overflow-x: hidden;
+            color: var(--light);
+        }
+        
+        /* Navbar styling */
+        .navbar {
+            padding: 1.25rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
+        
+        .logo-icon {
+            font-size: 1.5rem;
+            color: var(--primary);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .logo-text {
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: white;
+            letter-spacing: -0.5px;
+        }
+        
+        .back-button {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--gray-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .back-button:hover {
+            color: white;
+            transform: translateX(-3px);
+        }
+        
+        /* Main content */
+        .main-content {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem 1.5rem;
+            position: relative;
+        }
+        
+        /* Background decorations */
+        .bg-decoration {
+            position: absolute;
+            z-index: 0;
+        }
+        
+        .bg-decoration.circle-1 {
+            top: 10%;
+            right: 5%;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle at center, rgba(59, 130, 246, 0.15), rgba(59, 130, 246, 0));
+            filter: blur(50px);
+        }
+        
+        .bg-decoration.circle-2 {
+            bottom: 10%;
+            left: 5%;
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            background: radial-gradient(circle at center, rgba(16, 185, 129, 0.15), rgba(16, 185, 129, 0));
+            filter: blur(40px);
+        }
+        
+        /* Form container */
+        .form-container {
+            max-width: 900px;
+            width: 100%;
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            padding: 0;
+            position: relative;
+            z-index: 10;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+            animation: fadeIn 0.8s ease-out;
+        }
+        
+        /* Form header */
+        .form-header {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(16, 185, 129, 0.1));
+            padding: 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+        
+        .form-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='rgba(255,255,255,0.05)' fill-rule='evenodd'/%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+        
+        .form-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(90deg, #ffffff, #94a3b8);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            position: relative;
+        }
+        
+        .form-subtitle {
+            font-size: 0.95rem;
+            color: var(--gray-light);
+            max-width: 500px;
+            position: relative;
+        }
+        
+        /* Progress indicator */
+        .progress-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1.5rem;
+            position: relative;
+        }
+        
+        .progress-container::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-50%);
+        }
+        
+        .progress-container::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 33.33%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transform: translateY(-50%);
+            transition: width 0.3s ease;
+        }
+        
+        .progress-step {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.875rem;
+            color: var(--gray-light);
+            position: relative;
+            z-index: 1;
+            transition: all 0.3s ease;
+        }
+        
+        .progress-step.active {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border-color: var(--primary);
+            color: white;
+        }
+        
+        .progress-step.completed {
+            background: var(--secondary);
+            border-color: var(--secondary);
+            color: white;
+        }
+        
+        /* Form content */
+        .form-content {
+            padding: 2rem;
+        }
+        
+        .form-section {
+            display: none;
+        }
+        
+        .form-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease-out;
+        }
+        
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+        
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.25rem;
+        }
+        
+        .form-group {
+            margin-bottom: 0.5rem;
+            position: relative;
+        }
+        
+        .form-label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--gray-light);
+            margin-bottom: 0.35rem;
+        }
+        
+        .input-container {
+            position: relative;
+        }
+        
+        .input-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gray);
+            font-size: 0.875rem;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.75rem 1rem 0.75rem 2.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            background-color: rgba(15, 23, 42, 0.5);
+            color: white;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+            background-color: rgba(15, 23, 42, 0.7);
+        }
+        
+        .form-control::placeholder {
+            color: var(--gray);
+        }
+        
+        .form-select {
+            width: 100%;
+            padding: 0.75rem 1rem 0.75rem 2.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            background-color: rgba(15, 23, 42, 0.5);
+            color: white;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.75rem center;
+            background-size: 16px;
+        }
+        
+        .form-select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+            background-color: rgba(15, 23, 42, 0.7);
+        }
+        
+        /* Form navigation */
+        .form-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+        }
+        
+        .nav-button {
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: none;
+        }
+        
+        .prev-button {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+        
+        .prev-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .next-button {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+        }
+        
+        .next-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+        }
+        
+        .submit-button {
+            background: linear-gradient(135deg, var(--secondary), #059669);
+            color: white;
+            padding: 0.85rem 2rem;
+        }
+        
+        .submit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+        }
+        
+        /* Tooltip */
+        .tooltip {
+            position: absolute;
+            right: -10px;
+            top: 0;
+            font-size: 0.875rem;
+            color: var(--gray);
+            cursor: pointer;
+        }
+        
+        .tooltip-text {
+            visibility: hidden;
+            width: 200px;
+            background-color: var(--dark);
+            color: white;
+            text-align: center;
+            border-radius: 6px;
+            padding: 0.75rem;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 0.8rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .tooltip-text::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: var(--dark) transparent transparent transparent;
+        }
+        
+        .tooltip:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
+        
+        /* Range slider styling */
+        .range-container {
+            margin-top: 0.5rem;
+        }
+        
+        .range-slider {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 6px;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            outline: none;
+        }
+        
+        .range-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--primary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .range-slider::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+            background: var(--primary-dark);
+        }
+        
+        .range-values {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            color: var(--gray);
+            margin-top: 0.25rem;
+        }
+        
+        .range-value {
+            font-size: 1rem;
+            font-weight: 600;
+            color: white;
+            text-align: center;
+            margin-top: 0.5rem;
+        }
+        
+        /* Modal styling */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 50;
+            animation: fadeIn 0.3s ease-out;
+        }
+        
+        .modal-content {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.95));
+            border-radius: 20px;
+            padding: 0;
+            width: 100%;
+            max-width: 500px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: scaleIn 0.4s ease-out;
+        }
+        
+        .modal-header {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(16, 185, 129, 0.1));
+            padding: 1.5rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+        
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            margin: 0;
+        }
+        
+        .modal-body {
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .result-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .result-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(16, 185, 129, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.5rem;
+            color: var(--secondary);
+        }
+        
+        .result-value-large {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(90deg, #ffffff, #94a3b8);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .result-label {
+            font-size: 0.95rem;
+            color: var(--gray);
+            margin-bottom: 1rem;
+        }
+        
+        .result-item {
+            margin-bottom: 0.75rem;
+            font-size: 1.1rem;
+            color: white;
+        }
+        
+        .result-category {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-top: 0.5rem;
+        }
+        
+        .category-high {
+            background: rgba(16, 185, 129, 0.2);
+            color: #34d399;
+        }
+        
+        .category-medium {
+            background: rgba(245, 158, 11, 0.2);
+            color: #fbbf24;
+        }
+        
+        .category-low {
+            background: rgba(239, 68, 68, 0.2);
+            color: #f87171;
+        }
+        
+        .modal-footer {
+            padding: 1.5rem;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .modal-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            font-weight: 600;
+            padding: 0.85rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .modal-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+        }
+        
+        /* Error message */
+        .error-message {
+            background-color: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: #f87171;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem auto;
+            max-width: 800px;
+            font-size: 0.95rem;
+        }
+        
+        /* Loading animation */
+        .loading-overlay {
+            position: fixed;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+        }
+        
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            border-top-color: var(--primary);
+            animation: spin 1s ease-in-out infinite;
+            margin-bottom: 1rem;
+        }
+        
+        .loading-text {
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes scaleIn {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .form-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .form-container {
+                border-radius: 16px;
+            }
+            
+            .form-header, .form-content {
+                padding: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .progress-container {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="/" class="logo">
+            <i class="fas fa-futbol logo-icon"></i>
+            <span class="logo-text">Transfer Market Predictor</span>
+        </a>
+        <a href="/" class="back-button">
+            <i class="fas fa-arrow-left"></i>
+            Back to Home
+        </a>
+    </nav>
+    
+    <!-- Main content -->
+    <div class="main-content">
+        <!-- Background decorations -->
+        <div class="bg-decoration circle-1"></div>
+        <div class="bg-decoration circle-2"></div>
+        
+        <!-- Form container -->
+        <div class="form-container" id="form">
+            <div class="form-header">
+                <h2 class="form-title">Transfer Prediction Form</h2>
+                <p class="form-subtitle">Enter player details to predict their transfer market value based on FIFA 22 data</p>
+                
+                <!-- Progress indicator -->
+                <div class="progress-container">
+                    <div class="progress-step active">1</div>
+                    <div class="progress-step">2</div>
+                    <div class="progress-step">3</div>
+                </div>
+            </div>
+            
+            <form method="POST" id="prediction-form">
+                <div class="form-content">
+                    <!-- Section 1: Basic Info -->
+                    <div class="form-section active" id="section-1">
+                        <h3 class="section-title">Basic Player Information</h3>
+                        <div class="form-grid">
+                            <!-- Player Position -->
+                            <div class="form-group">
+                                <label class="form-label">Player Position</label>
+                                <div class="input-container">
+                                    <i class="fas fa-running input-icon"></i>
+                                    <select name="player_positions" class="form-select" required>
+                                        <option value="ST">ST - Striker</option>
+                                        <option value="CF">CF - Center Forward</option>
+                                        <option value="CAM">CAM - Center Attacking Mid</option>
+                                        <option value="CM">CM - Center Midfielder</option>
+                                        <option value="CDM">CDM - Center Defensive Mid</option>
+                                        <option value="LM">LM - Left Midfielder</option>
+                                        <option value="RM">RM - Right Midfielder</option>
+                                        <option value="LW">LW - Left Winger</option>
+                                        <option value="RW">RW - Right Winger</option>
+                                        <option value="CB">CB - Center Back</option>
+                                        <option value="LB">LB - Left Back</option>
+                                        <option value="RB">RB - Right Back</option>
+                                        <option value="LWB">LWB - Left Wing Back</option>
+                                        <option value="RWB">RWB - Right Wing Back</option>
+                                        <option value="GK">GK - Goalkeeper</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <!-- Age -->
+                            <div class="form-group">
+                                <label class="form-label">Age</label>
+                                <div class="input-container">
+                                    <i class="fas fa-calendar-alt input-icon"></i>
+                                    <input type="number" step="any" name="age" class="form-control" required min="15" max="50" placeholder="18-40">
+                                </div>
+                            </div>
+                            
+                            <!-- Height (cm) -->
+                            <div class="form-group">
+                                <label class="form-label">Height (cm)</label>
+                                <div class="input-container">
+                                    <i class="fas fa-ruler-vertical input-icon"></i>
+                                    <input type="number" step="any" name="height_cm" class="form-control" required min="150" max="220" placeholder="150-220">
+                                </div>
+                            </div>
+                            
+                            <!-- Weight (kg) -->
+                            <div class="form-group">
+                                <label class="form-label">Weight (kg)</label>
+                                <div class="input-container">
+                                    <i class="fas fa-weight input-icon"></i>
+                                    <input type="number" step="any" name="weight_kg" class="form-control" required min="50" max="120" placeholder="50-120">
+                                </div>
+                            </div>
+                            
+                            <!-- Wage (EUR) -->
+                            <div class="form-group">
+                                <label class="form-label">
+                                    Wage (EUR)
+                                    <span class="tooltip">
+                                        <i class="fas fa-info-circle"></i>
+                                        <span class="tooltip-text">Weekly wage in Euros</span>
+                                    </span>
+                                </label>
+                                <div class="input-container">
+                                    <i class="fas fa-euro-sign input-icon"></i>
+                                    <input type="number" step="any" name="wage_eur" class="form-control" required placeholder="Weekly wage">
+                                </div>
+                            </div>
+                            
+                            <!-- International Reputation -->
+                            <div class="form-group">
+                                <label class="form-label">International Reputation</label>
+                                <div class="input-container">
+                                    <i class="fas fa-globe input-icon"></i>
+                                    <select name="international_reputation" class="form-select" required>
+                                        <option value="1">1 - Low</option>
+                                        <option value="2">2 - Medium-Low</option>
+                                        <option value="3">3 - Medium</option>
+                                        <option value="4">4 - Medium-High</option>
+                                        <option value="5">5 - High</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-navigation">
+                            <button type="button" class="nav-button next-button" id="to-section-2">
+                                Next Step
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Section 2: Ratings -->
+                    <div class="form-section" id="section-2">
+                        <h3 class="section-title">Player Ratings</h3>
+                        <div class="form-grid">
+                            <!-- Overall Rating -->
+                            <div class="form-group">
+                                <label class="form-label">Overall Rating</label>
+                                <div class="input-container">
+                                    <i class="fas fa-star input-icon"></i>
+                                    <input type="number" step="any" name="overall" class="form-control" required min="1" max="99" placeholder="1-99">
+                                </div>
+                                <div class="range-container">
+                                    <input type="range" class="range-slider" min="1" max="99" value="75" id="overall-range">
+                                    <div class="range-values">
+                                        <span>1</span>
+                                        <span>99</span>
+                                    </div>
+                                    <div class="range-value" id="overall-value">75</div>
+                                </div>
+                            </div>
+                            
+                            <!-- Potential -->
+                            <div class="form-group">
+                                <label class="form-label">Potential</label>
+                                <div class="input-container">
+                                    <i class="fas fa-chart-line input-icon"></i>
+                                    <input type="number" step="any" name="potential" class="form-control" required min="1" max="99" placeholder="1-99">
+                                </div>
+                                <div class="range-container">
+                                    <input type="range" class="range-slider" min="1" max="99" value="80" id="potential-range">
+                                    <div class="range-values">
+                                        <span>1</span>
+                                        <span>99</span>
+                                    </div>
+                                    <div class="range-value" id="potential-value">80</div>
+                                </div>
+                            </div>
+                            
+                            <!-- Skill Moves -->
+                            <div class="form-group">
+                                <label class="form-label">Skill Moves</label>
+                                <div class="input-container">
+                                    <i class="fas fa-magic input-icon"></i>
+                                    <select name="skill_moves" class="form-select" required>
+                                        <option value="1">1 - Basic</option>
+                                        <option value="2">2 - Simple</option>
+                                        <option value="3">3 - Advanced</option>
+                                        <option value="4">4 - Expert</option>
+                                        <option value="5">5 - Master</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <!-- Weak Foot -->
+                            <div class="form-group">
+                                <label class="form-label">Weak Foot</label>
+                                <div class="input-container">
+                                    <i class="fas fa-shoe-prints input-icon"></i>
+                                    <select name="weak_foot" class="form-select" required>
+                                        <option value="1">1 - Very Weak</option>
+                                        <option value="2">2 - Weak</option>
+                                        <option value="3">3 - Decent</option>
+                                        <option value="4">4 - Good</option>
+                                        <option value="5">5 - Excellent</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-navigation">
+                            <button type="button" class="nav-button prev-button" id="to-section-1">
+                                <i class="fas fa-arrow-left"></i>
+                                Previous
+                            </button>
+                            <button type="button" class="nav-button next-button" id="to-section-3">
+                                Next Step
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Section 3: Attributes -->
+                    <div class="form-section" id="section-3">
+                        <h3 class="section-title">Player Attributes</h3>
+                        <div class="form-grid">
+                            <!-- Pace -->
+                            <div class="form-group">
+                                <label class="form-label">Pace</label>
+                                <div class="input-container">
+                                    <i class="fas fa-bolt input-icon"></i>
+                                    <input type="number" step="any" name="pace" class="form-control" required min="1" max="99" placeholder="1-99">
+                                </div>
+                                <div class="range-container">
+                                    <input type="range" class="range-slider" min="1" max="99" value="70" id="pace-range">
+                                    <div class="range-values">
+                                        <span>1</span>
+                                        <span>99</span>
+                                    </div>
+                                    <div class="range-value" id="pace-value">70</div>
+                                </div>
+                  id="pace-value">70</div>
+                                </div>
+                            </div>
+                            
+                            <!-- Shooting -->
+                            <div class="form-group">
+                                <label class="form-label">Shooting</label>
+                                <div class="input-container">
+                                    <i class="fas fa-futbol input-icon"></i>
+                                    <input type="number" step="any" name="shooting" class="form-control" required min="1" max="99" placeholder="1-99">
+                                </div>
+                                <div class="range-container">
+                                    <input type="range" class="range-slider" min="1" max="99" value="70" id="shooting-range">
+                                    <div class="range-values">
+                                        <span>1</span>
+                                        <span>99</span>
+                                    </div>
+                                    <div class="range-value" id="shooting-value">70</div>
+                                </div>
+                            </div>
+                            
+                            <!-- Passing -->
+                            <div class="form-group">
+                                <label class="form-label">Passing</label>
+                                <div class="input-container">
+                                    <i class="fas fa-share-alt input-icon"></i>
+                                    <input type="number" step="any" name="passing" class="form-control" required min="1" max="99" placeholder="1-99">
+                                </div>
+                                <div class="range-container">
+                                    <input type="range" class="range-slider" min="1" max="99" value="70" id="passing-range">
+                                    <div class="range-values">
+                                        <span>1</span>
+                                        <span>99</span>
+                                    </div>
+                                    <div class="range-value" id="passing-value">70</div>
+                                </div>
+                            </div>
+                            
+                            <!-- Dribbling -->
+                            <div class="form-group">
+                                <label class="form-label">Dribbling</label>
+                                <div class="input-container">
+                                    <i class="fas fa-running input-icon"></i>
+                                    <input type="number" step="any" name="dribbling" class="form-control" required min="1" max="99" placeholder="1-99">
+                                </div>
+                                <div class="range-container">
+                                    <input type="range" class="range-slider" min="1" max="99" value="70" id="dribbling-range">
+                                    <div class="range-values">
+                                        <span>1</span>
+                                        <span>99</span>
+                                    </div>
+                                    <div class="range-value" id="dribbling-value">70</div>
+                                </div>
+                            </div>
+                            
+                            <!-- Defending -->
+                            <div class="form-group">
+                                <label class="form-label">Defending</label>
+                                <div class="input-container">
+                                    <i class="fas fa-shield-alt input-icon"></i>
+                                    <input type="number" step="any" name="defending" class="form-control" required min="1" max="99" placeholder="1-99">
+                                </div>
+                                <div class="range-container">
+                                    <input type="range" class="range-slider" min="1" max="99" value="70" id="defending-range">
+                                    <div class="range-values">
+                                        <span>1</span>
+                                        <span>99</span>
+                                    </div>
+                                    <div class="range-value" id="defending-value">70</div>
+                                </div>
+                            </div>
+                            
+                            <!-- Physic -->
+                            <div class="form-group">
+                                <label class="form-label">Physic</label>
+                                <div class="input-container">
+                                    <i class="fas fa-dumbbell input-icon"></i>
+                                    <input type="number" step="any" name="physic" class="form-control" required min="1" max="99" placeholder="1-99">
+                                </div>
+                                <div class="range-container">
+                                    <input type="range" class="range-slider" min="1" max="99" value="70" id="physic-range">
+                                    <div class="range-values">
+                                        <span>1</span>
+                                        <span>99</span>
+                                    </div>
+                                    <div class="range-value" id="physic-value">70</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-navigation">
+                            <button type="button" class="nav-button prev-button" id="to-section-2">
+                                <i class="fas fa-arrow-left"></i>
+                                Previous
+                            </button>
+                            <button type="submit" class="nav-button submit-button">
+                                Calculate Value
+                                <i class="fas fa-calculator"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Loading overlay (hidden by default) -->
+    <div class="loading-overlay" id="loading-overlay" style="display: none;">
+        <div class="loading-spinner"></div>
+        <p class="loading-text">Calculating transfer value...</p>
+    </div>
+    
+    <!-- Modal for prediction results (will be shown conditionally) -->
+    {% if prediction %}
+    <div class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Prediction Results</h3>
+            </div>
+            <div class="modal-body">
+                <div class="result-card">
+                    <div class="result-icon">
+                        <i class="fas fa-euro-sign"></i>
+                    </div>
+                    <div class="result-value-large">€{{ "{:,}".format(prediction) }}</div>
+                    <p class="result-label">Estimated Transfer Value</p>
+                    
+                    <div class="result-item">
+                        Value Category: 
+                        {% if kategori == "High" %}
+                            <span class="result-category category-high">{{ kategori }}</span>
+                        {% elif kategori == "Medium" %}
+                            <span class="result-category category-medium">{{ kategori }}</span>
+                        {% else %}
+                            <span class="result-category category-low">{{ kategori }}</span>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="/index" class="modal-btn">
+                    <i class="fas fa-redo"></i>
+                    Make Another Prediction
+                </a>
+            </div>
+        </div>
+    </div>
+    {% elif error %}
+    <div class="error-message">
+        {{ error }}
+    </div>
+    {% endif %}
+    
+    <!-- JavaScript for form functionality -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Form navigation
+            const sections = document.querySelectorAll('.form-section');
+            const progressSteps = document.querySelectorAll('.progress-step');
+            
+            // Next buttons
+            document.getElementById('to-section-2').addEventListener('click', function() {
+                sections[0].classList.remove('active');
+                sections[1].classList.add('active');
+                progressSteps[0].classList.add('completed');
+                progressSteps[1].classList.add('active');
+                document.querySelector('.progress-container').style.setProperty('--progress', '66.66%');
+            });
+            
+            document.getElementById('to-section-3').addEventListener('click', function() {
+                sections[1].classList.remove('active');
+                sections[2].classList.add('active');
+                progressSteps[1].classList.add('completed');
+                progressSteps[2].classList.add('active');
+                document.querySelector('.progress-container').style.setProperty('--progress', '100%');
+            });
+            
+            // Previous buttons
+            document.getElementById('to-section-1').addEventListener('click', function() {
+                sections[1].classList.remove('active');
+                sections[0].classList.add('active');
+                progressSteps[1].classList.remove('active');
+                progressSteps[0].classList.remove('completed');
+                document.querySelector('.progress-container').style.setProperty('--progress', '33.33%');
+            });
+            
+            document.getElementById('to-section-2').addEventListener('click', function() {
+                sections[2].classList.remove('active');
+                sections[1].classList.add('active');
+                progressSteps[2].classList.remove('active');
+                progressSteps[1].classList.remove('completed');
+                document.querySelector('.progress-container').style.setProperty('--progress', '66.66%');
+            });
+            
+            // Range sliders
+            const rangeSliders = document.querySelectorAll('.range-slider');
+            rangeSliders.forEach(slider => {
+                const input = slider.closest('.form-group').querySelector('input[type="number"]');
+                const valueDisplay = slider.closest('.range-container').querySelector('.range-value');
+                
+                // Initialize input with slider value
+                input.value = slider.value;
+                
+                // Update input when slider changes
+                slider.addEventListener('input', function() {
+                    input.value = this.value;
+                    valueDisplay.textContent = this.value;
+                });
+                
+                // Update slider when input changes
+                input.addEventListener('input', function() {
+                    slider.value = this.value;
+                    valueDisplay.textContent = this.value;
+                });
+            });
+            
+            // Form submission
+            const form = document.getElementById('prediction-form');
+            const loadingOverlay = document.getElementById('loading-overlay');
+            
+            form.addEventListener('submit', function() {
+                loadingOverlay.style.display = 'flex';
+            });
+        });
+    </script>
+</body>
+</html>
